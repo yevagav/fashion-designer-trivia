@@ -1,0 +1,60 @@
+body {
+   background-color: antiquewhite;
+}
+
+ /* First page that loads  */
+ .flex-box{
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: aliceblue;
+   
+ }
+ 
+ .page-header {
+    background-color: white;
+    text-align: center;
+    
+ }
+.game-photo {
+    background-color: gray;
+}
+
+ .game-photo > img {
+    width: 100%;
+    width: 100%
+
+ }
+
+
+
+ .begin-game {
+    background-color: black;
+    text-align: center;
+ }
+
+ button .start-game{
+    background-color: white;
+ }
+
+ /* Input name for game section */
+.container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   max-width: 500px;
+   background-color: white;
+   
+   
+   
+}
+
+h1 {
+   text-align: center;
+}
+
+.player-name {
+
+}
