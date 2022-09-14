@@ -3,8 +3,13 @@ const homePage = document.querySelector('.home-page')
 const startButton = document.querySelector('.start-game')
 
 //Making the next page appear after start trivia is pressed
+const playerDetailsCont = document.querySelector('.player-details')
+console.log(playerDetailsCont)
+
 startButton.addEventListener('click', () => {
-    homePage.style.visibility ='hidden'
+    homePage.style.visibility = 'hidden';
+    // playerDetailsCont.style.visibility = 'visible';
+
 })
 
 //Page where it asks you your name 
@@ -15,5 +20,10 @@ console.log(submitName)
 
 //When button is clicked the name gets stored in the game
 submitName.addEventListener('click', () => {
-    
+    playerDetailsCont.style.visibility= 'hidden';
 })
+
+// Player chooses which category they want to challenge 
+
+
+

@@ -11,47 +11,109 @@
 </head>
 
 <body>
-    <section class="trivia-game">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   </section>
-
-    <!-- First page that will pop up on website -->
-    <section class="flex-box home-page">
     <header class="page-header">
         <h1>Designer Fashion Trivia</h1>
     </header>
-    <div class="game-photo">
-        <img src="images/Home.PNG" alt="fashion">
+    <section class="trivia-game">
+        <div class="game-container">
+            <div class="score-container">
+                <div class="item" id="questionNo">
+                    <span id="num">0</span>
+                    <span>of</span>
+                    <span id="lastnum">10</span>
+                </div>
+                <div class="item" id="timer">
+                    <span id="time">0</span>
+                </div>
+                <div class="item" id="score">
+                    <span>Score:</span>
+                    <span id="total">0</span>
+                </div>
 
-    </div>
-    <div class ="begin-game">
-       <button type="button" class="start-game">
-        Start Trivia
-       </button>
-    </div>
+            </div>
+            <!-- Game questions -->
+            <div class="game-question">
+                <h1 id="questions">What Brand Is This?</h1>
+            </div>
+            <div class="images-container">
+                <div class="image">
+                 image
+                </div>
+            </div>
 
-</section>
+            <!-- Game Answer Section -->
+          <div class="answer-container">
+            <div class="answers" id="answer1">
+                <span>answer 1</span>
+            </div>
+            <div class="answers" id="answer2">
+                <span>answer 2</span>
+            </div>
+            <div class="answers" id="answer3">
+                <span>answer 3</span>
+            </div>
+            <div class="answers" id="answer4">
+                <span>answer 4</span>
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+
+    <!-- First page that will pop up on website -->
+
+    <section class="flex-box home-page">
+        <div class="game-photo">
+            <img src="images/Home.PNG" alt="fashion">
+
+        </div>
+        <div class="begin-game">
+            <button type="button" class="start-game">
+                Start Trivia
+            </button>
+        </div>
+
+    </section>
 
     <div class="container player-details">
         <h1>Designer Fashion Trivia</h1>
-        <input type="text" class="player-name">
+        <input type="text" class="player-name" placeholder="Your Name">
         <button type="button" class="name-button">
             Enter
         </button>
     </div>
+
+    <section class="game-categories">
+        <h1>Choose a category you want to challenge</h1>
+        <div class="categories">
+            <div class="option-one column-category">
+                Do You Know The Logo?
+            </div>
+            <div class="option-two column-category">
+                You think you know all about designer pieces?
+            </div>
+            <div class="option-three column-category">
+                Which Designer Is...
+            </div>
+
+        </div>
+
+
+
+    </section>
 
 </body>
 
