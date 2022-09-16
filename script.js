@@ -41,7 +41,7 @@ console.log(displayScore)
 const displayAnswers = document.querySelectorAll('.answers')
 console.log(displayAnswers)
 
-
+//Game Logic
 
 const quizOne = [
     {   
@@ -76,42 +76,125 @@ const quizOne = [
     }
 
 ]
+console.log(quizOne)
 
-const timer = () => {
-    displayTimer.innerText = 10;
-    setInterval(function(){
+class Question {
+    constructor(questionNumber, questions, answers, correctAnswer, image) { 
+        this.questionNumber = questionNumber;
+        this.questions = questions;
+        this.answers = answers;
+        this.correctAnswer = correctAnswer;
+        this.image = image;
 
-    })
+    }
+    logCorrect () {
+
+        console.log(this.correctAnswer)
+    }
+}
+
+const questionArr = []
+
+for(let i = 0; i < quizOne.length; i ++){
+    const question = new Question (
+        quizOne[i].questionNumber,
+        quizOne[i].questions,
+        quizOne[i].answers,
+        quizOne[i].correctAnswer,
+        quizOne[i].image
+    )
+    questionArr.push(question)
+}
+console.log(questionArr)
+
+const generateQuestions = () => {
+    for(let i =0; i < questionArr.length; i ++){
+        if(questionArr[0]){
+            displayQuestionNo.innerHTML = questionArr[0].questionNumber;
+        displayQuestion.innerHTML = questionArr[0].questions; 
+        }
+    
+    }
+
+}
+
+const generateAnswers = () => {
+
+
 }
 
 
 
-const startGame = () => {
 
-        displayQuestionNo.innerText = quizOne[0].questionNumber;
+generateQuestions()
+    
+// const generateAnswers = () => {
+//     for(let i=0; i < questionArr.length; i ++){
 
-        displayQuestion.innerText = quizOne[0].questions;
+//     }
+// }
+//     console.log(questionArr)
 
-        displayAnswers.forEach(function(element, index) {
-            element.textContent = quizOne[0].answers[index];
 
-            element.addEventListener('click', () => {
-                if(quizOne[0].correctAnswer === index) {
-                    displayQuestion.innerText = 'Correct Answer!'
-                } else {
-                    displayQuestion.innerText = 'Wrong Its Chanel'
-                }
-            })
+// class Player {
+//    this.timer--
+//             displayTimer.innerText = `${newPlayer.timer}`
+//         // },1000)
         
-        })
+//     }
+
+//     setScore () {
+//         this.score++
+//         displayScore.innerText = `${newPlayer.score}`
+//     }
+// }
+
+// const newPlayer = new Player(0);
+
+
+
+// const startGame = () => {
+//         quizOne.forEach(function(){
+//             if(quizOne[0].questionNumber) {
+//              displayQuestionNo.innerText = quizOne[0].questionNumber
+     
+//              newPlayer.setScore()
+//             } 
+//          }) constructor(score, timer){
+//         this.score = 0;
+//         this.timer = 10;
+//     }
+//     setTimer () {
+        // setInterval(function(){
+            
+  
+   
+
+
+        // displayQuestionNo.innerText = quizOne[0].questionNumber;
+
+        // displayQuestion.innerText = quizOne[0].questions;
+
+        // displayAnswers.forEach(function(element, index) {
+        //     element.textContent = quizOne[0].answers[index];
+
+        //     element.addEventListener('click', () => {
+        //         if(quizOne[0].correctAnswer === index) {
+        //             displayQuestion.innerText = 'Correct Answer!'
+        //         } else {
+        //             displayQuestion.innerText = 'Wrong Its Chanel'
+        //         }
+        //     })
+        
+        // })
 
 
 
 
-    }
+    // }
 
 
-    startGame()
+    // startGame()
 
 
 
