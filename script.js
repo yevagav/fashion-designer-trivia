@@ -4,7 +4,6 @@ const startButton = document.querySelector('.start-game')
 
 //Making the next page appear after start trivia is pressed
 const playerDetailsCont = document.querySelector('.player-details')
-console.log(playerDetailsCont)
 
 startButton.addEventListener('click', () => {
     homePage.style.visibility = 'hidden';
@@ -14,32 +13,48 @@ startButton.addEventListener('click', () => {
 
 //Page where it asks you your name 
 const inputPlayer = document.querySelector('.player-name')
-console.log(inputPlayer)
+
 const submitName = document.querySelector('.name-button')
-console.log(submitName)
+
+
+const gameCategories = document.querySelector('.game-categories')
 
 //When button is clicked the name gets stored in the game
 submitName.addEventListener('click', () => {
     playerDetailsCont.style.visibility= 'hidden';
+    gameCategories.style.visibility = 'visible'
 })
 
 // Player chooses which category they want to challenge 
+const category1 = document.querySelector('.option-one')
+const category2 = document.querySelector('.option-two')
+const category3 = document.querySelector('.option-three')
+
+category1.addEventListener('click', () => {
+    gameCategories.style.visibility ='hidden'
+    showQuestion()
+        
+   
+})
+
+
+
 
 //Once the category is chosen the game starts 
 const displayQuestion = document.getElementById('questions')
-console.log(displayQuestion)
+
 
 const displayQuestionNo = document.getElementById('num')
-console.log(displayQuestionNo)
+
 
 const displayTimer = document.querySelector('#time')
-console.log(displayTimer)
+
 
 const displayScore = document.querySelector('#total')
-console.log(displayScore)
+
 
 const displayAnswers = document.querySelectorAll('.answers')
-console.log(displayAnswers)
+
 
 //Game Logic
 
@@ -88,10 +103,9 @@ class Question {
 
     }
     logCorrect () {
-
-        console.log(this.correctAnswer)
     }
-}
+    }
+
 
 const questionArr = []
 
@@ -107,66 +121,106 @@ for(let i = 0; i < quizOne.length; i ++){
 }
 console.log(questionArr)
 
-const generateQuestions = () => {
-    for(let i =0; i < questionArr.length; i ++){
-        if(questionArr[0]){
-            displayQuestionNo.innerHTML = questionArr[0].questionNumber;
-        displayQuestion.innerHTML = questionArr[0].questions; 
+
+let currentQuestionIndex = 0
+
+const showQuestion = () => {
+    displayQuestion.textContent = questionArr[currentQuestionIndex].questions
+
+    displayQuestionNo.textContent = currentQuestionIndex + 1
+
+    console.log(displayAnswers)
+
+    displayAnswers.forEach(function(element, index){
+        element.textContent = questionArr[currentQuestionIndex].answers[index]
+        
+        element.addEventListener('click', function(evt){
+        if(questionArr[currentQuestionIndex].correctAnswer == evt.target.getAttribute('data')){
+            console.log(currentQuestionIndex)
+            console.log(questionArr[currentQuestionIndex].correctAnswer)
+            displayQuestion.textContent = "Correct!"
+            currentQuestionIndex++
+            showQuestion()
+        } else {
+             displayQuestion.textContent = 'Wrong Answer!'
+             currentQuestionIndex++
+             showQuestion()
+
+            
+             
         }
-    
-    }
+    })
+
+    })
 
 }
+
+    
+
+
+
+
+
+
+
+// const showQuestion = () => {
+//     for(let i = 0; i < questionArr.length; i++){
+//         displayQuestion.textContent = questionArr[i].questions;
+
+//         displayAnswers.forEach(function(element, index){
+//             element.textContent = questionArr[i].answers[index]
+//             element.addEventListener('click', function(){
+//                 if(questionArr[i].correctAnswer === index){
+//                     displayQuestion.textContent = "Correct!"
+//                 } else {
+//                    displayQuestion.textContent = 'Wrong Answer!'
+//                 }
+//             })
+//         })
+//     }  
+// }
+
+
+
+
+
+
+
+
+
+
+
 
 const generateAnswers = () => {
 
 
 }
 
-
-
-
-generateQuestions()
     
-// const generateAnswers = () => {
-//     for(let i=0; i < questionArr.length; i ++){
-
-//     }
-// }
-//     console.log(questionArr)
+    // 10 second timer per questiion
+    
+    
 
 
-// class Player {
-//    this.timer--
-//             displayTimer.innerText = `${newPlayer.timer}`
-//         // },1000)
-        
-//     }
-
-//     setScore () {
-//         this.score++
-//         displayScore.innerText = `${newPlayer.score}`
-//     }
-// }
-
-// const newPlayer = new Player(0);
-
-
-
-// const startGame = () => {
-//         quizOne.forEach(function(){
-//             if(quizOne[0].questionNumber) {
-//              displayQuestionNo.innerText = quizOne[0].questionNumber
-     
-//              newPlayer.setScore()
-//             } 
-//          }) constructor(score, timer){
-//         this.score = 0;
-//         this.timer = 10;
-//     }
-//     setTimer () {
-        // setInterval(function(){
+    
             
+        
+      
+        
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
   
    
 
@@ -237,11 +291,6 @@ generateQuestions()
     //     questions: 'What brand logo is shown here?'
     // }
        
-
-
-
-
-
 
 
 

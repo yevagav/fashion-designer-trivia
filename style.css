@@ -88,7 +88,7 @@ body {
 
 /* Game categories options */
 .game-categories{
-   visibility: hidden;
+   visibility: visible;
    display: flex;
    flex-direction: column;
    /* background-color: white; */
