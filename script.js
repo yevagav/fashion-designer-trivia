@@ -55,6 +55,8 @@ const displayScore = document.querySelector('#total')
 
 const displayAnswers = document.querySelectorAll('.answers')
 
+const displayImage = document.querySelector('.my-img')
+console.log(displayImage)
 
 //Game Logic
 
@@ -64,46 +66,50 @@ const quizOne = [
         questions: 'Which designer logo is seen here?',
         answers: ['Chanel', 'Givenchy', 'Valentino', 'Gucci'],
         correctAnswer: 0,
+        imgFile: './images/chanel-logo.webp',
     },
     {   
         questionNumber: 2,
         questions: 'What brand is associated with this logo?',
         answers: ['Versace', 'Hermes', 'Louis Vuitton', 'Burberry'],
         correctAnswer: 1,
+        imgFile: './images/chanel-logo.webp',
     },
     {   
         questionNumber: 3,
         questions: 'Which logo is seen in the image?',
         answers: ['Alexander McQueen', 'Prada', 'Armani', 'Givenchy'],
         correctAnswer: 2,
+        imgFile: './images/chanel-logo.webp',
     },
     {   
         questionNumber: 4,
         questions: 'The logo corresponds to the brand_______.',
         answers: ['Baleciaga', 'Pierre Cardin', 'Prada', 'Polo'],
         correctAnswer: 3,
+        imgFile: './images/chanel-logo.webp',
     },
     {   
         questionNumber: 5,
         questions: 'The brand seen here is_________.',
         answers: ['Prada', 'Dior', 'Versace', 'Gucci'],
         correctAnswer: 2,
+        imgFile: './images/chanel-logo.webp',
     }
 
 ]
 console.log(quizOne)
 
 class Question {
-    constructor(questionNumber, questions, answers, correctAnswer, image) { 
+    constructor(questionNumber, questions, answers, correctAnswer, imgFile) { 
         this.questionNumber = questionNumber;
         this.questions = questions;
         this.answers = answers;
         this.correctAnswer = correctAnswer;
-        this.image = image;
+        this.imgFile = imgFile;
 
     }
-    logCorrect () {
-    }
+
     }
 
 
@@ -115,7 +121,7 @@ for(let i = 0; i < quizOne.length; i ++){
         quizOne[i].questions,
         quizOne[i].answers,
         quizOne[i].correctAnswer,
-        quizOne[i].image
+        quizOne[i].imgFile,
     )
     questionArr.push(question)
 }
@@ -124,10 +130,19 @@ console.log(questionArr)
 
 let currentQuestionIndex = 0
 
+let score = 0;
+const scoreBoard = document.querySelector('#score')
+
+
+
 const showQuestion = () => {
     displayQuestion.textContent = questionArr[currentQuestionIndex].questions
 
     displayQuestionNo.textContent = currentQuestionIndex + 1
+console.log(displayQuestionNo)
+
+    displayImage.src =
+    questionArr[currentQuestionIndex].imgFile
 
     console.log(displayAnswers)
 
@@ -135,9 +150,14 @@ const showQuestion = () => {
         element.textContent = questionArr[currentQuestionIndex].answers[index]
         
         element.addEventListener('click', function(evt){
+            console.log(questionArr[currentQuestionIndex].correctAnswer)
+            console.log(evt.target.getAttribute('data'))
         if(questionArr[currentQuestionIndex].correctAnswer == evt.target.getAttribute('data')){
             console.log(currentQuestionIndex)
             console.log(questionArr[currentQuestionIndex].correctAnswer)
+           
+            score++;
+            scoreBoard.innerHTML = `Score: ${score}`
             displayQuestion.textContent = "Correct!"
             currentQuestionIndex++
             showQuestion()
@@ -181,21 +201,6 @@ const showQuestion = () => {
 // }
 
 
-
-
-
-
-
-
-
-
-
-
-const generateAnswers = () => {
-
-
-}
-
     
     // 10 second timer per questiion
     
@@ -225,31 +230,7 @@ const generateAnswers = () => {
    
 
 
-        // displayQuestionNo.innerText = quizOne[0].questionNumber;
-
-        // displayQuestion.innerText = quizOne[0].questions;
-
-        // displayAnswers.forEach(function(element, index) {
-        //     element.textContent = quizOne[0].answers[index];
-
-        //     element.addEventListener('click', () => {
-        //         if(quizOne[0].correctAnswer === index) {
-        //             displayQuestion.innerText = 'Correct Answer!'
-        //         } else {
-        //             displayQuestion.innerText = 'Wrong Its Chanel'
-        //         }
-        //     })
         
-        // })
-
-
-
-
-    // }
-
-
-    // startGame()
-
 
 
     // {
