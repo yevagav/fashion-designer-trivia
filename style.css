@@ -212,6 +212,7 @@ body {
 .answer-container {
    display: flex;
    flex-direction: row;
+   justify-content: space-evenly;
    /* background-color: aquamarine; */
    gap: 15px;
    height: 75px;
@@ -219,7 +220,7 @@ body {
 
 }
 
-.answers {
+.answers > div {
    flex: 1;
    background-color: #F1E9DB;
    margin-left: 20px;
@@ -232,7 +233,7 @@ body {
    justify-content: center;
 }
 
-.answers:hover{
+.answers > div:hover{
    background-color: #A39B8B;
    color: white;
 }

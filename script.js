@@ -62,28 +62,28 @@ const quizOne = [
         questions: 'What brand is associated with this logo?',
         answers: ['Versace', 'Hermes', 'Louis Vuitton', 'Burberry'],
         correctAnswer: 1,
-        imgFile: './images/chanel-logo.webp',
+        imgFile: './images/hermes-logo.jpeg',
     },
     {   
         questionNumber: 3,
         questions: 'Which logo is seen in the image?',
         answers: ['Alexander McQueen', 'Prada', 'Armani', 'Givenchy'],
         correctAnswer: 2,
-        imgFile: './images/chanel-logo.webp',
+        imgFile: './images/GA-logo.jpeg',
     },
     {   
         questionNumber: 4,
         questions: 'The logo corresponds to the brand_______.',
         answers: ['Baleciaga', 'Pierre Cardin', 'Prada', 'Polo'],
         correctAnswer: 3,
-        imgFile: './images/chanel-logo.webp',
+        imgFile: './images/rl-logo.png',
     },
     {   
         questionNumber: 5,
         questions: 'The brand seen here is_________.',
         answers: ['Prada', 'Dior', 'Versace', 'Gucci'],
         correctAnswer: 2,
-        imgFile: './images/chanel-logo.webp',
+        imgFile: './images/versace-logo.png',
     }
 
 ]
@@ -137,14 +137,14 @@ const timer = () => {
         }
        
         
-    }, 1000)
+    })
 }
 
 
 // selecting answers 
 const displayAnswers = document.querySelectorAll('.answers')
 console.log(displayAnswers)
-const answersText = document.querySelectorAll('.answers > span')
+const answersText = document.querySelectorAll('.answers > div')
 console.log(answersText)
 
 //
@@ -156,6 +156,7 @@ let currentQuestionIndex = 0
 category1.addEventListener('click', () => {
     gameCategories.style.visibility ='hidden'
     startGame()
+    
         
    
 })
@@ -164,6 +165,7 @@ category1.addEventListener('click', () => {
 
 const startGame = () => {
     generateQuestion()
+    checkAnswer()
     
     }
 
@@ -173,6 +175,7 @@ const generateQuestion = () => {
     answersText[1].textContent = questionArr[currentQuestionIndex].answers[1];
     answersText[2].textContent = questionArr[currentQuestionIndex].answers[2];
     answersText[3].textContent = questionArr[currentQuestionIndex].answers[3];
+    displayImage.src = questionArr[currentQuestionIndex].imgFile
 
 }
 
@@ -196,13 +199,13 @@ const checkAnswer = (evt) => {
                     scoreBoard.innerHTML = `Score:${score}`
                     currentQuestionIndex++
                     generateQuestion()
-                    timer()
+                
                 } else {
                     alert('Wrong answer!')
                     'Wrong Answer!'
                     currentQuestionIndex++
                     generateQuestion()
-                    timer()
+            
                 }
             })
         })
@@ -211,7 +214,7 @@ const checkAnswer = (evt) => {
     
 
 
-checkAnswer()
+
    
 
 
@@ -237,10 +240,6 @@ const enableOptions = () => {
 
 
 
-// display on screen 
-const render = () => {
-
-}
 
 
 
