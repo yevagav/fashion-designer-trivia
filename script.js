@@ -194,17 +194,21 @@ const checkAnswer = (evt) => {
             element.textContent = questionArr[currentQuestionIndex].answers[index]
             element.addEventListener('click', function () {
                 if (questionArr[currentQuestionIndex].correctAnswer === index) {
-                    alert('Correct!')
+                    displayQuestion.innerText = "Correct! You're good at this!"
                     score++
                     scoreBoard.innerHTML = `Score:${score}`
-                    currentQuestionIndex++
-                    generateQuestion()
+                    setTimeout(function(){
+                        currentQuestionIndex++
+                        generateQuestion()
+                    },2000);
+                
                 
                 } else {
-                    alert('Wrong answer!')
-                    'Wrong Answer!'
-                    currentQuestionIndex++
-                    generateQuestion()
+                    displayQuestion.innerText = "Sorry that answer is wrong!"
+                    setTimeout(function(){
+                        currentQuestionIndex++
+                        generateQuestion()
+                    },2000);
             
                 }
             })
