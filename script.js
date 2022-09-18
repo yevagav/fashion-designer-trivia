@@ -30,13 +30,6 @@ const category1 = document.querySelector('.option-one')
 const category2 = document.querySelector('.option-two')
 const category3 = document.querySelector('.option-three')
 
-category1.addEventListener('click', () => {
-    gameCategories.style.visibility ='hidden'
-    showQuestion()
-        
-   
-})
-
 
 
 
@@ -47,13 +40,9 @@ const displayQuestion = document.getElementById('questions')
 const displayQuestionNo = document.getElementById('num')
 
 
-const displayTimer = document.querySelector('#time')
-
-
 const displayScore = document.querySelector('#total')
 
 
-const displayAnswers = document.querySelectorAll('.answers')
 
 const displayImage = document.querySelector('.my-img')
 console.log(displayImage)
@@ -100,6 +89,7 @@ const quizOne = [
 ]
 console.log(quizOne)
 
+
 class Question {
     constructor(questionNumber, questions, answers, correctAnswer, imgFile) { 
         this.questionNumber = questionNumber;
@@ -109,6 +99,7 @@ class Question {
         this.imgFile = imgFile;
 
     }
+
 
     }
 
@@ -128,54 +119,214 @@ for(let i = 0; i < quizOne.length; i ++){
 console.log(questionArr)
 
 
-let currentQuestionIndex = 0
-
+//score 
 let score = 0;
 const scoreBoard = document.querySelector('#score')
 
 
+//timer 
+const displayTimer = document.querySelector('#time')
 
-const showQuestion = () => {
-    displayQuestion.textContent = questionArr[currentQuestionIndex].questions
-
-    displayQuestionNo.textContent = currentQuestionIndex + 1
-console.log(displayQuestionNo)
-
-    displayImage.src =
-    questionArr[currentQuestionIndex].imgFile
-
-    console.log(displayAnswers)
-
-    displayAnswers.forEach(function(element, index){
-        element.textContent = questionArr[currentQuestionIndex].answers[index]
-        
-        element.addEventListener('click', function(evt){
-            console.log(questionArr[currentQuestionIndex].correctAnswer)
-            console.log(evt.target.getAttribute('data'))
-        if(questionArr[currentQuestionIndex].correctAnswer == evt.target.getAttribute('data')){
-            console.log(currentQuestionIndex)
-            console.log(questionArr[currentQuestionIndex].correctAnswer)
-           
-            score++;
-            scoreBoard.innerHTML = `Score: ${score}`
-            displayQuestion.textContent = "Correct!"
-            currentQuestionIndex++
-            showQuestion()
-        } else {
-             displayQuestion.textContent = 'Wrong Answer!'
-             currentQuestionIndex++
-             showQuestion()
-
-            
-             
+let time = 10;
+const timer = () => {
+    intervalId = setInterval(function() {
+        displayTimer.innerHTML = `${time}`;
+        time--;
+        if(time === -1){
+            clearInterval(intervalId)
         }
-    })
+       
+        
+    }, 1000)
+}
 
-    })
+
+// selecting answers 
+const displayAnswers = document.querySelectorAll('.answers')
+console.log(displayAnswers)
+const answersText = document.querySelectorAll('.answers > span')
+console.log(answersText)
+
+//
+let currentQuestionIndex = 0
+
+
+
+// "start game button from categories"
+category1.addEventListener('click', () => {
+    gameCategories.style.visibility ='hidden'
+    startGame()
+        
+   
+})
+
+
+
+const startGame = () => {
+    generateQuestion()
+    
+    }
+
+const generateQuestion = () => {
+   displayQuestion.innerHTML = questionArr[currentQuestionIndex].questions;
+    answersText[0].textContent = questionArr[currentQuestionIndex].answers[0];
+    answersText[1].textContent = questionArr[currentQuestionIndex].answers[1];
+    answersText[2].textContent = questionArr[currentQuestionIndex].answers[2];
+    answersText[3].textContent = questionArr[currentQuestionIndex].answers[3];
 
 }
 
+
+
+
+
+
+
+
+//check selected options
+const checkAnswer = (evt) => {
+        answersText.textContent = questionArr[currentQuestionIndex].questions;
+
+        answersText.forEach(function (element, index) {
+            element.textContent = questionArr[currentQuestionIndex].answers[index]
+            element.addEventListener('click', function () {
+                if (questionArr[currentQuestionIndex].correctAnswer === index) {
+                    alert('Correct!')
+                    score++
+                    scoreBoard.innerHTML = `Score:${score}`
+                    currentQuestionIndex++
+                    generateQuestion()
+                    timer()
+                } else {
+                    alert('Wrong answer!')
+                    'Wrong Answer!'
+                    currentQuestionIndex++
+                    generateQuestion()
+                    timer()
+                }
+            })
+        })
+    }
+
     
+
+
+checkAnswer()
+   
+
+
+
+
+
+
+//time is up 
+const timeUp = () => {
+
+}
+
+
+//disable options after time is up
+const disableOptions = () => {
+
+}
+
+//enable options when time starts again
+const enableOptions = () => {
+
+}
+
+
+
+// display on screen 
+const render = () => {
+
+}
+
+
+
+
+
+
+
+
+
+// correct & wrong answer choices 
+// displayAnswers.forEach(function(element, index){
+//     element.textContent = questionArr[currentQuestionIndex].answers[index]
+    
+//     console.log( element.textContent = questionArr[currentQuestionIndex].answers[index])
+    
+//     element.addEventListener('click', function(evt){
+       
+//         console.log(questionArr[currentQuestionIndex].correctAnswer)
+//         console.log(evt.target.getAttribute('data'))
+
+    
+//     if(questionArr[currentQuestionIndex].correctAnswer == evt.target.getAttribute('data')){
+//         console.log(currentQuestionIndex)
+//         console.log(questionArr[currentQuestionIndex].correctAnswer)
+
+//         console.log( element.textContent = questionArr[currentQuestionIndex].answers[index])
+
+//         alert('correct you get a point!')
+//         score++;
+//         scoreBoard.innerHTML = `Score: ${score}`
+//         currentQuestionIndex++
+//         render()
+    
+//     } else {
+//          alert('wrong answer!')
+//          currentQuestionIndex++
+//         render()
+
+        
+         
+//     }
+    
+// })
+
+// })
+
+// const timer = document.querySelector('#time')
+// console.log(timer)
+
+// const startTimer = () => {
+  
+// }
+
+// startTimer()
+
+
+
+
+
+
+// const render = () => {
+//     //renders the questions on screen
+//     displayQuestion.textContent = questionArr[currentQuestionIndex].questions
+
+//     // renders answer options
+//     // displayAnswers.textContent = questionArr[currentQuestionIndex].answers
+
+//     console.log(displayAnswers)
+
+//     //renders which question we are at
+//     displayQuestionNo.textContent = currentQuestionIndex + 1
+//     console.log(displayQuestionNo)
+
+//     //renders images
+//     displayImage.src =
+//     questionArr[currentQuestionIndex].imgFile
+
+
+
+// }
+
+    
+
+
+
+
 
 
 
