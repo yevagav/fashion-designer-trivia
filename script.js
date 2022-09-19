@@ -84,7 +84,47 @@ const quizOne = [
         answers: ['Prada', 'Dior', 'Versace', 'Gucci'],
         correctAnswer: 2,
         imgFile: './images/versace-logo.png',
-    }
+    },
+    {
+        questionNumber: 6,
+        questions:'Which of these designer brand logos is seen in the picture?',
+        answers: ['Tory Burch', 'Yves Saint Laurent', 'Dior', 'Carolina Herrera'],
+        correctAnswer: 1,
+        imgFile: './images/ysl-logo.png',
+
+    },
+    {
+        questionNumber: 7,
+        questions:'The brand seen here is______.',
+        answers: ['Chloe', 'Polo', 'Chanel', 'Burberry'],
+        correctAnswer: 0,
+        imgFile: './images/chloe-logo.jpeg'
+    },
+    {
+        questionNumber: 8,
+        questions: 'The logo shown is of the brand____.',
+        answers: ['Prada', 'Dior', 'Vera Wang', 'Gucci'],
+        correctAnswer: 1,
+        imgFile: './images/dior0logo.png'
+    },
+    {
+        questionNumber: 9,
+        questions: 'The brand represented in the image is______.',
+        answers: ['Tory Burch', 'Yves Saint Laurent', 'Dior', 'Oscar de La Renta'],
+        correctAnswer: 3,
+        imgFile: './images/oscar-logo.jpeg'
+
+    },
+    {
+        questionNumber: 10,
+        questions: 'What brand logo is shown here?',
+        answers: ['Gucci', 'Balmain', 'Givenchy', 'Carolina Herrera'],
+        correctAnswer: 2,
+        imgFile: './images/givenchy-logo.png',
+    },
+       
+
+    
 
 ]
 console.log(quizOne)
@@ -99,9 +139,7 @@ class Question {
         this.imgFile = imgFile;
 
     }
-
-
-    }
+}
 
 
 const questionArr = []
@@ -128,16 +166,30 @@ const scoreBoard = document.querySelector('#score')
 const displayTimer = document.querySelector('#time')
 
 let time = 10;
+let intervalId;
+
 const timer = () => {
     intervalId = setInterval(function() {
         displayTimer.innerHTML = `${time}`;
         time--;
-        if(time === -1){
+        if(time < 0){
             clearInterval(intervalId)
+            setTimeout(function(){
+                showAnswers()
+                currentQuestionIndex++
+                generateQuestion()
+                time = 10;
+                timer()
+            },600);
+
+            
+        } else if (time <= 5){
+            displayTimer.style.color = 'red'
         }
+        
        
         
-    })
+    },1000)
 }
 
 
@@ -152,7 +204,7 @@ let currentQuestionIndex = 0
 
 
 
-// "start game button from categories"
+// start game button from categories
 category1.addEventListener('click', () => {
     gameCategories.style.visibility ='hidden'
     startGame()
@@ -162,21 +214,33 @@ category1.addEventListener('click', () => {
 })
 
 
-
+// start game function 
 const startGame = () => {
     generateQuestion()
+    timer()
     checkAnswer()
     
-    }
+    
+}
 
-const generateQuestion = () => {
+
+
+function generateQuestion () {
+    displayQuestionNo.innerHTML = questionArr[currentQuestionIndex].questionNumber;
+
    displayQuestion.innerHTML = questionArr[currentQuestionIndex].questions;
-    answersText[0].textContent = questionArr[currentQuestionIndex].answers[0];
-    answersText[1].textContent = questionArr[currentQuestionIndex].answers[1];
-    answersText[2].textContent = questionArr[currentQuestionIndex].answers[2];
-    answersText[3].textContent = questionArr[currentQuestionIndex].answers[3];
-    displayImage.src = questionArr[currentQuestionIndex].imgFile
 
+    answersText[0].textContent = questionArr[currentQuestionIndex].answers[0];
+
+    answersText[1].textContent = questionArr[currentQuestionIndex].answers[1];
+
+    answersText[2].textContent = questionArr[currentQuestionIndex].answers[2];
+
+    answersText[3].textContent = questionArr[currentQuestionIndex].answers[3];
+    
+    displayImage.src = questionArr[currentQuestionIndex].imgFile
+   
+   
 }
 
 
@@ -188,143 +252,65 @@ const generateQuestion = () => {
 
 //check selected options
 const checkAnswer = (evt) => {
-        answersText.textContent = questionArr[currentQuestionIndex].questions;
+    answersText.textContent = questionArr[currentQuestionIndex].questions;
 
-        answersText.forEach(function (element, index) {
-            element.textContent = questionArr[currentQuestionIndex].answers[index]
-            element.addEventListener('click', function () {
-                if (questionArr[currentQuestionIndex].correctAnswer === index) {
-                    displayQuestion.innerText = "Correct! You're good at this!"
-                    score++
-                    scoreBoard.innerHTML = `Score:${score}`
-                    setTimeout(function(){
-                        currentQuestionIndex++
-                        generateQuestion()
-                    },2000);
+    answersText.forEach(function (element, index) {
+     element.textContent = questionArr[currentQuestionIndex].answers[index]
+      element.addEventListener('click', function () {
+        if (questionArr[currentQuestionIndex].correctAnswer === index) {
+            clearInterval(intervalId);
+            displayQuestion.innerText = "Correct! You're good at this!"
+            removeAnswers()
+            score++
+            scoreBoard.innerHTML = `Score:${score}`
+                    
+            setTimeout(function(){
+                showAnswers()
+                currentQuestionIndex++
+                generateQuestion()
+                time = 10;
+                timer()
+            },600);
                 
                 
-                } else {
-                    displayQuestion.innerText = "Sorry that answer is wrong!"
-                    setTimeout(function(){
-                        currentQuestionIndex++
-                        generateQuestion()
-                    },2000);
+        } else {
+            clearInterval(intervalId);
+            displayQuestion.innerText = "Sorry that answer is wrong!"
+            removeAnswers()
+            setTimeout(function(){
+                gameOver()
+                showAnswers()
+                currentQuestionIndex++
+                generateQuestion()
+                time = 10;
+                timer()
+            },600);
             
-                }
-            })
-        })
-    }
-
-    
-
-
-
-   
-
-
-
-
-
-
-//time is up 
-const timeUp = () => {
-
-}
-
-
-//disable options after time is up
-const disableOptions = () => {
-
-}
-
-//enable options when time starts again
-const enableOptions = () => {
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-// correct & wrong answer choices 
-// displayAnswers.forEach(function(element, index){
-//     element.textContent = questionArr[currentQuestionIndex].answers[index]
-    
-//     console.log( element.textContent = questionArr[currentQuestionIndex].answers[index])
-    
-//     element.addEventListener('click', function(evt){
-       
-//         console.log(questionArr[currentQuestionIndex].correctAnswer)
-//         console.log(evt.target.getAttribute('data'))
-
-    
-//     if(questionArr[currentQuestionIndex].correctAnswer == evt.target.getAttribute('data')){
-//         console.log(currentQuestionIndex)
-//         console.log(questionArr[currentQuestionIndex].correctAnswer)
-
-//         console.log( element.textContent = questionArr[currentQuestionIndex].answers[index])
-
-//         alert('correct you get a point!')
-//         score++;
-//         scoreBoard.innerHTML = `Score: ${score}`
-//         currentQuestionIndex++
-//         render()
-    
-//     } else {
-//          alert('wrong answer!')
-//          currentQuestionIndex++
-//         render()
-
+        }
         
-         
-//     }
+        })
+
+    })
+}        
+
     
-// })
+//answers container
+const answersContainer = document.querySelector('.answer-container')
 
-// })
+function removeAnswers () {
+    answersContainer.style.visibility = 'hidden'
+}
 
-// const timer = document.querySelector('#time')
-// console.log(timer)
-
-// const startTimer = () => {
-  
-// }
-
-// startTimer()
+function showAnswers () {
+    answersContainer.style.visibility = 'visible'
+}
 
 
 
-
-
-
-// const render = () => {
-//     //renders the questions on screen
-//     displayQuestion.textContent = questionArr[currentQuestionIndex].questions
-
-//     // renders answer options
-//     // displayAnswers.textContent = questionArr[currentQuestionIndex].answers
-
-//     console.log(displayAnswers)
-
-//     //renders which question we are at
-//     displayQuestionNo.textContent = currentQuestionIndex + 1
-//     console.log(displayQuestionNo)
-
-//     //renders images
-//     displayImage.src =
-//     questionArr[currentQuestionIndex].imgFile
-
-
-
-// }
-
+//game over
+function gameOver () {
+    alert(`Game Over You Got ${score} points!`)
+}
     
 
 
@@ -337,27 +323,25 @@ const enableOptions = () => {
 
 
 
-// const showQuestion = () => {
-//     for(let i = 0; i < questionArr.length; i++){
-//         displayQuestion.textContent = questionArr[i].questions;
 
-//         displayAnswers.forEach(function(element, index){
-//             element.textContent = questionArr[i].answers[index]
-//             element.addEventListener('click', function(){
-//                 if(questionArr[i].correctAnswer === index){
-//                     displayQuestion.textContent = "Correct!"
-//                 } else {
-//                    displayQuestion.textContent = 'Wrong Answer!'
-//                 }
-//             })
-//         })
-//     }  
-// }
+
+
+
 
 
     
-    // 10 second timer per questiion
-    
+
+
+
+
+
+
+
+
+
+
+
+           
     
 
 
@@ -384,49 +368,7 @@ const enableOptions = () => {
    
 
 
-        
-
-
-    // {
-    //     questionNumber: 2,
-    //     questions: 'What brand is associated with this logo?'
-    // }
-    // {
-    //     questionNumber: 3,
-    //     questions: 'Which logo is seen in the image?'
-    // }
-    // {
-    //     questionNumber: 4,
-    //     questions: 'The logo corresponds to the brand_______.'
-    // },
-    // {
-    //     questionNumber: 5,
-    //     questions: 'Which of the following brands is seen here?'
-    // },
-    // {
-    //     questionNumber: 6,
-    //     questions:'Which of these designer brand logos is seen in the picture?'
-
-    // },
-    // {
-    //     questionNumber: 7,
-    //     questions:'The brand seen here is______.'
-    // },
-    // {
-    //     questionNumber: 8,
-    //     questions: 'The logo shown is of the brand____.'
-    // },
-    // {
-    //     questionNumber: 9,
-    //     questions: 'The brand represented in the image is______.'
-
-    // },
-    // {
-    //     questionNumber: 10,
-    //     questions: 'What brand logo is shown here?'
-    // }
-       
-
+  
 
 
 
