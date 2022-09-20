@@ -16,7 +16,6 @@ const inputPlayer = document.querySelector('.player-name')
 
 const submitName = document.querySelector('.name-button')
 
-
 const gameCategories = document.querySelector('.game-categories')
 
 const showName = document.querySelector('.game-categories > h1 span')
@@ -57,6 +56,9 @@ const displayImage = document.querySelector('.my-img')
 console.log(displayImage)
 
 const gameContainer = document.querySelector('.game-container')
+
+//timer 
+const displayTimer = document.querySelector('#time')
 
 //Game Logic
 
@@ -189,8 +191,6 @@ let score = 0;
 const scoreBoard = document.querySelector('#score')
 
 
-//timer 
-const displayTimer = document.querySelector('#time')
 
 // variables for all the quiz categories 
 let time = 10;
