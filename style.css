@@ -1,39 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+
 body {
-   background-color: #51504B;
+   background-color: #E9E8E0;
+   font-family: 'Italiana', serif;
+
 }
 
 /* First page that loads  */
 .page-header {
    text-align: center;
-   font-family: 'DM Serif Display', serif;
-   color: white;
-   font-size: 20px;
+   font-family: 'Italiana', serif;
+   color: black;
+   font-size: 25px;
+   letter-spacing: .2rem;
+  
 
-   
+
 
 
 }
 
-.flex-box {
+.home-page {
    visibility: visible;
-   display: flex;
-   flex-direction: column;
+   /* display: flex;
+   flex-direction: column; */
 
-   top: 70px;
-   justify-content: space-evenly;
+
+
+   /* justify-content: space-evenly; */
    background-color: black;
    position: absolute;
+   left: 0px;
+   right: 0px;
+   top: 140px;
+   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+
 }
 
 
-.game-photo {
+/* .game-photo {
+   flex: 1;
    background-color: gray;
    
-}
+} */
 
 .game-photo>img {
-   width: 100%;
-   width: 100%
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   height: 500px;
+   width: 1440px;
+
 }
 
 
@@ -41,10 +62,22 @@ body {
 .begin-game {
    background-color: black;
    text-align: center;
+   height: 50px;
 }
 
-button .start-game {
+.start-game {
+   background-color: #A39B8B;
+   color: white;
+   height: 50px;
+   width: 150px;
+   border-radius: 10px;
+   font-family: 'Italiana', serif;
+   font-size: 20px;
+}
+
+.start-game:hover{
    background-color: white;
+   color: #A39B8B;;
 }
 
 /* Input name for game section */
@@ -53,11 +86,12 @@ button .start-game {
    display: flex;
    flex-direction: column;
    align-items: center;
-   position: fixed;
+   justify-content: center;
+   position: absolute;
    padding: 60px;
    margin: 0;
    top: 30%;
-   right: 36%;
+   right: 34%;
 
    background-color: white;
    box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
@@ -70,6 +104,7 @@ button .start-game {
 .container>h1 {
    text-align: center;
    padding: 10px;
+   font-family: 'Italiana', serif;
 }
 
 .player-details>h1 {
@@ -91,6 +126,8 @@ button .start-game {
    color: white;
    width: 200px;
    border-radius: 10px;
+   font-family: 'Italiana', serif;
+
 }
 
 /* Game categories options */
@@ -98,20 +135,31 @@ button .start-game {
    visibility: hidden;
    display: flex;
    flex-direction: column;
-   /* background-color: white; */
-   text-align: center;
-   position: fixed;
-   top: 30%;
-   right: 36%;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   padding: 60px;
+   margin: 0;
+   top: 20%;
+   right: 23%;
+   background-color: white;
+   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+   border-radius: 10px;
 }
 
-.game-categories>h1 {
-   color: white;
+.game-categories> h1 {
+   font-family: 'Italiana', serif;
+   font-size: 40px;
+} 
+
+.game-categories> h2 {
+   color: black;
    border-style: solid;
    border-top: 0;
    border-left: 0;
    border-right: 0;
-   border-color: #F1E9DB;
+   border-color: black;
+   font-family: 'Italiana', serif;
 }
 
 .categories {
@@ -125,9 +173,9 @@ button .start-game {
 }
 
 .column-category {
-   background-color: #F1E9DB;
+   background-color: #A39B8B;
    border-radius: 10px;
-   color: black;
+   color: white;
    height: 200px;
    width: 200px;
    font-size: 20px;
@@ -142,15 +190,11 @@ button .start-game {
 }
 
 .column-category:hover {
-   background-color: #A39B8B;
-   color: white;
+   background-color: white;
+   color: #A39B8B;
 }
 
-.option-one {}
 
-.option-two {}
-
-.option-three {}
 
 /* Game Container */
 .game-container {
@@ -172,7 +216,8 @@ button .start-game {
 .item {
    flex: 1;
    font-size: 25px;
-   background-color: #F1E9DB;
+   background-color: black;
+   color: white;
    margin-left: 20px;
    margin-right: 20px;
    padding: 20px 20px 20px 20px;
@@ -180,15 +225,16 @@ button .start-game {
 
 }
 
-#questionNo {}
+
 
 .game-question {
    /* background-color: gray; */
-   color: White;
+   color: black;
    font-size: 25px;
    text-align: center;
    height: 50px;
    margin-bottom: 30px;
+   font-family: 'Italiana', serif;
 
 }
 
@@ -198,6 +244,7 @@ button .start-game {
    height: 400px;
    flex-direction: row;
    justify-content: center;
+  
 }
 
 .my-img {
@@ -205,6 +252,7 @@ button .start-game {
    height: 300px;
    margin-bottom: 30px;
    border-radius: 10px;
+   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* answers container */
@@ -221,7 +269,8 @@ button .start-game {
 
 .answers>div {
    flex: 1;
-   background-color: #F1E9DB;
+   background-color: #A39B8B;
+   color: white;
    margin-left: 20px;
    margin-right: 20px;
    padding: 20px 20px 20px 20px;
@@ -233,6 +282,6 @@ button .start-game {
 }
 
 .answers>div:hover {
-   background-color: #A39B8B;
-   color: white;
+   background-color: white;
+   color: #A39B8B;
 }
