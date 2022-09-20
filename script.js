@@ -7,7 +7,7 @@ const playerDetailsCont = document.querySelector('.player-details')
 
 startButton.addEventListener('click', () => {
     homePage.style.visibility = 'hidden';
-    // playerDetailsCont.style.visibility = 'visible';
+    playerDetailsCont.style.visibility = 'visible';
 
 })
 
@@ -202,11 +202,12 @@ console.log(answersText)
 //
 let currentQuestionIndex = 0
 
-
+const gameContainer = document.querySelector('.game-container')
 
 // start game button from categories
 category1.addEventListener('click', () => {
-    gameCategories.style.visibility ='hidden'
+    gameCategories.style.visibility ='hidden';
+    gameContainer.style.visibility = 'visible';
     startGame()
     
         
@@ -216,9 +217,10 @@ category1.addEventListener('click', () => {
 
 // start game function 
 const startGame = () => {
-    generateQuestion()
-    timer()
-    checkAnswer()
+    generateQuestion();
+    timer();
+    checkAnswer();
+    
     
     
 }
@@ -278,7 +280,6 @@ const checkAnswer = (evt) => {
             displayQuestion.innerText = "Sorry that answer is wrong!"
             removeAnswers()
             setTimeout(function(){
-                gameOver()
                 showAnswers()
                 currentQuestionIndex++
                 generateQuestion()
@@ -309,9 +310,13 @@ function showAnswers () {
 
 //game over
 function gameOver () {
-    alert(`Game Over You Got ${score} points!`)
-}
+    if(currentQuestionIndex === 9){
+     alert(`Game Over You Got ${score} points!`)
+        document.location.reload()
+    }
     
+}
+    gameOver()
 
 
 
