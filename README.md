@@ -1,6 +1,7 @@
 # Designer Fashion Trivia 
 
 A trivia game centered around designer fashion.
+[Deployed Designer Fashion Trivia](https://yevagav.github.io/fashion-designer-trivia/)
 
 ## Getting started 
 

@@ -204,6 +204,7 @@ const timer = () => {
         if(time < 0){
             clearInterval(intervalId)
             setTimeout(function(){
+                gameOver()
                 showAnswers()
                 currentQuestionIndex++
                 generateQuestion()
